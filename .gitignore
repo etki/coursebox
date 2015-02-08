@@ -1,9 +1,4 @@
-/composer.lock
-/composer.phar
-/composer
-/vendor
-
-.idea
-.project
-.settings
-nbproject
+/.idea
+/.project
+/.settings
+/nbproject

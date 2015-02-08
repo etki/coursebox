@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>Таблица</title>
+    </head>
+    <body>
+        <table border="1">
+            <thead><!-- Заголовочная часть таблицы -->
+                <tr>
+                    <td>Столбец А</td>
+                    <td>Столбец Б</td>
+                    <td>Столбец Иллюминаты</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><!-- строка #1 -->
+                    <td rowspan="2">
+                        <!-- растянется на две строки -->
+                        Высокий
+                    </td><!-- ячейка #1 строки #1 -->
+                    <td>1:2</td>
+                    <th>1:3</th><!-- снова заголовочный -->
+                </tr>
+                <tr><!-- строка #2 -->
+                    <td colspan="2">
+                        <!-- растянется на два столбца -->
+                        Широкий
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot><!-- footer -->
+                <tr>
+                    <td colspan="3">
+                       Вот и сказочке конец
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </body>
+</html>
