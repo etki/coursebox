@@ -1,0 +1,24 @@
+{
+  "name": "etki/coursebox",
+  "description": "a simple app so students may perform some magic",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Etki",
+      "email": "etki@etki.name",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "yiisoft/yii": "~1.1.16",
+    "ircmaxell/password-compat": "~1.0",
+    "allure-framework/allure-codeception": "~1.1.1"
+  },
+  "require-dev": {
+    "codeception/codeception": "~2.0"
+  },
+  "config": {
+    "bin-dir": "bin"
+  }
+}
