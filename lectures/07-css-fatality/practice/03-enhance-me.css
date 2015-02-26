@@ -1,0 +1,15 @@
+.block {
+    background-color: orange;
+    padding: 10px;
+    width: 500px;
+    margin: 10px auto;
+}
+
+.block-d .floatable {
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.block-e span {
+    border-bottom: 1px dashed
+}

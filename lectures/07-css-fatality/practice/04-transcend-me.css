@@ -1,0 +1,39 @@
+.block {
+    background-color: rgba(0, 255, 0, 0.3);
+    padding: 10px;
+    width: 600px;
+    margin: 10px auto;
+}
+
+.tick:before {
+    margin-right: 5px;
+    content: "\2717";
+}
+
+.magic-tragic {
+    transition: color 0.2s linear;
+    font-family: "PT Sans", sans-serif;
+    cursor: pointer;
+}
+
+.magic-tragic:hover {
+    color: orange;
+}
+
+.block-c .column {
+    width: 45%;
+    float: left;
+    padding: 2.5%;
+}
+
+.block-e, .block-e .frame {
+    border: 2px solid rgba(0, 255, 0, 0.5);
+}
+
+.block-e {
+    width: 616px;
+    padding: 0;
+}
+.block-e .frame {
+    padding: 10px;
+}

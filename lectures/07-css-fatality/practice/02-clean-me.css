@@ -1,0 +1,60 @@
+.block {
+    width: 400px;
+    margin: 25px auto;
+    padding: 10px;
+    background-color: #97bbd5;
+}
+
+.block-a h1 {
+    /* убрать три правила */
+    display: inline;
+    font-size: 100%;
+    float: none;
+    line-height: 1;
+    font-style: normal;
+    font-weight: normal;
+    stroke: none;
+}
+
+.block-b p {
+    /* убрать два правила */
+    padding: 0 21px;
+    margin: 0;
+    line-height: 0.8;
+    color: black;
+}
+
+.block-c {
+    text-align: center;
+}
+
+.block-c .aligned {
+    display: inline-block;
+    background-color: #97bbd5;
+    padding: 0 10px;
+}
+
+.block-c hr {
+    /* убрать два правила */
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.block-d span, .block-d strong {
+    /* убрать одно правило */
+    color: black;
+    background-color: transparent;
+    border-bottom: 1px dotted currentColor;
+    font-style: italic;
+    font-size: 1em;
+}
+
+.block-e {
+    /* оставить ровно одно правило */
+    color: red;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: monospace;
+    font-size: 1cm;
+    text-align: justify;
+}
