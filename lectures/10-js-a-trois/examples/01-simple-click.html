@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Пример / 1</title>
+  <style>
+    .square {
+      margin: 100px auto;
+      width: 200px;
+      height: 200px;
+      transition: background-color 0.5s;
+      border: 2px solid black;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="square">
+
+  </div>
+  <script type="text/javascript">
+    document.querySelector('.square').addEventListener('click', function (event) {
+      var colors = ['green', 'orange', 'yellow', 'pink', 'violet', 'black', 'white'],
+          nextColor = colors[Math.floor(Math.random() * colors.length)];
+          event.target.setAttribute('style', 'background-color: ' + nextColor);
+    });
+  </script>
+</body>
+</html>

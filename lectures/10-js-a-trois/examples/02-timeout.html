@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Пример / 2</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: green;
+      color: white;
+      margin: 100px auto;
+      padding: 20px;
+      cursor: pointer;
+    }
+    div.orange {
+      background-color: orange;
+    }
+  </style>
+</head>
+<body>
+<div>
+
+</div>
+<script type="text/javascript">
+  var timeoutId, intervalId, ltr = true;
+  document.querySelector('div').addEventListener('click', function (event) {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
+    timeoutId = setTimeout(function () {
+      event.target.innerHTML = 'Уииииииииииииииии!';
+      event.target.setAttribute('class', 'orange');
+      intervalId = setInterval(function () {
+        var align = 'right';
+        if (ltr = !ltr) {
+          align = 'left';
+        }
+        event.target.setAttribute('style', 'text-align: ' + align);
+      }, 500);
+    }, 1000)
+  });
+</script>
+</body>
+</html>

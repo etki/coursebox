@@ -1,0 +1,18 @@
+.target div.pig[realpig] {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 256px;
+    width: 256px;
+    margin: -128px;
+    background: url('pig.png');
+}
+.target div.pig[realpig]:after {
+    content: 'О свиньях уже позаботились нужные люди';
+    color: green;
+    position: absolute;
+    bottom: -20px;
+    left: -50%;
+    width: 200%;
+    text-align: center;
+}
