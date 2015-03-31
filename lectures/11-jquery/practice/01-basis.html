@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>jQuery / 01</title>
+  <style>
+    .modal-window {
+      width: 400px;
+      margin: 0 auto;
+      border: 1px solid #000000;
+    }
+    .modal-window .header, .modal-window .body {
+      padding: 10px;
+    }
+    .modal-window .header {
+      background-color: #000000;
+      color: #ffffff;
+    }
+    .modal-window .header .close-button {
+      float : right;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: color 0.2s linear;
+    }
+    .modal-window .close-button:hover {
+      color: #ff8888;
+    }
+    p {
+      margin: 0;
+    }
+    p + p {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="modal-window">
+    <div class="header">
+      Модальное окно
+      <div class="close-button">Закрыть</div>
+    </div>
+    <div class="body">
+      <p>
+        Знаете, тут должно быть какое-то сообщение об ошибке, но мы забыли, в
+        чем именно оно состояло.
+      </p>
+      <p>
+        Впрочем, все что нам нужно - это чтобы окно закрывалось при нажатии на
+        "закрыть".
+      </p>
+    </div>
+  </div>
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript">
+    // писать здесь, конечно
+  </script>
+</body>
+</html>

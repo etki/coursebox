@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>jQuery / hw01</title>
+  <style>
+    .modal-window {
+      width: 500px;
+      margin: 0 auto;
+      border: 1px solid #000000;
+    }
+    .modal-window .header {
+      border-bottom: 1px solid #000000;
+    }
+    .modal-window .header, .modal-window .body {
+      padding: 10px;
+    }
+    .modal-window .header .controls {
+      float: right;
+    }
+    .modal-window .header .controls span:hover {
+      color: lightgreen;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+  <script type="text/javascript" src="jquery.min.js"></script>
+</head>
+  <div class="modal-window">
+    <div class="header">
+      Другое модальное окно
+      <div class="controls">
+        <span class="expand-button">увеличить</span>
+        <span class="collapse-button">сжать</span>
+        <span class="close-button">закрыть</span>
+      </div>
+    </div>
+    <div class="body">
+      Да, я другое модальное окно. Ну и что?
+    </div>
+  </div>
+<body>
+  <script type="text/javascript">
+    // писать код здесь
+  </script>
+</body>
+</html>
