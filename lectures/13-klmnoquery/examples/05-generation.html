@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>jQuery / 05</title>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function ($) {
+      var copyCounter = 1;
+      $(document).on('click', 'div', function () {
+        var $this = $(this),
+            $div = $('<div>', {html: 'click me! - copy #' + copyCounter});
+        $div.insertAfter($this);
+        copyCounter++;
+      });
+    });
+  </script>
+  <style>
+    div {
+      border: 1px solid black;
+      padding: 10px;
+      width: 200px;
+      margin: 10px auto;
+      cursor: pointer;
+    }
+    div:first-child {
+      margin-top: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div>click me!</div>
+</body>
+</html>

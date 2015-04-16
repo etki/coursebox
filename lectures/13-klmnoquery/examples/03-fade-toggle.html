@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>jQuery / 03</title>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+      $('.question span').click(function () {
+        $(this).parent().next('.answer').fadeToggle(500);
+      })
+    });
+  </script>
+  <style>
+    .container {
+      width: 500px;
+      margin: 200px auto;
+    }
+    .question span {
+      cursor: pointer;
+      color: #7098d5;
+      border-bottom: 1px dashed;
+    }
+    .question span:hover {
+      color: #90a8f5;
+      border-bottom-style: solid;
+    }
+    .answer {
+      display: none;
+      margin: 10px 0 20px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="question">
+    <span>Когда все будет жорошо?</span>
+  </div>
+  <div class="answer">
+    Сложный вопрос. В текущей ситуации, когда наши заокеанские друзья прилагают
+    столько усилий, чтобы поставить мир на колени, Россия будет продолжать
+    оставаться великой державой без имперских амбиций.
+  </div>
+  <div class="question">
+    <span>Скажи 42</span>
+  </div>
+  <div class="answer">
+    42
+  </div>
+</div>
+</body>
+</html>

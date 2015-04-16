@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>jQuery / 06</title>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function ($) {
+      var TEMPLATE = 'Мой текущий айпи-адрес для внешнего интернета - %s',
+          JSONTEST_URL = 'http://ip.jsontest.com';
+      $('div').click(function () {
+        $.ajax({
+          url: JSONTEST_URL,
+          data: {a: 'b', c: 'd'}, // в данном случае вообще ничего не значит
+          dataType: 'json',
+          success: function (data) {
+            $('<div>', {
+              html: TEMPLATE.replace('%s', data.ip)
+            }).appendTo('body').hide().fadeIn();
+            console.log('yarr')
+          },
+          error: function () {
+            console.warn(':(');
+          },
+          complete: function () {
+            console.log('Запрос завершен (хз, может неудачно)');
+          }
+        });
+      });
+    });
+  </script>
+  <style>
+    div {
+      border: 1px solid #000000;
+      width: 200px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+    div:first-child {
+      cursor: pointer;
+      margin-top: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div>Покажи мне мой айпи</div>
+</body>
+</html>
