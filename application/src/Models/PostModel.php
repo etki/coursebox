@@ -58,4 +58,9 @@ class PostModel extends BaseModel
             'content' => 'Текст',
         );
     }
+
+    public static function model($className = __CLASS__)
+    {
+        return parent::model($className);
+    }
 }

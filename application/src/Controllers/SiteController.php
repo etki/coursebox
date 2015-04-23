@@ -9,6 +9,10 @@
  */
 class SiteController extends BaseController
 {
+    public function actionIndex()
+    {
+        $this->render('index');
+    }
     /**
      * Registers new user.
      *

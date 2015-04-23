@@ -2,6 +2,7 @@
 /**
  * This model handles all logic related to users.
  *
+ * @property int    $id
  * @property string $login
  * @property string $password
  * @property Post[] $posts
@@ -71,14 +72,14 @@ class UserModel extends BaseModel
         return array(
             array(
                 array('login',),
-                'string',
+                'length',
                 'min' => 3,
                 'max' => 64,
                 'allowEmpty' => false,
             ),
             array(
                 array('password',),
-                'string',
+                'length',
                 'min' => 3,
                 'allowEmpty' => false
             )
@@ -100,5 +101,10 @@ class UserModel extends BaseModel
             'login' => 'Логин',
             'password' => 'Пароль',
         );
+    }
+
+    public static function model($className = __CLASS__)
+    {
+        return parent::model($className);
     }
 }
