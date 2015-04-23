@@ -41,7 +41,7 @@
 <h1>Пример запроса</h1>
 <pre>
 $.ajax({
-    url: 'c.etki.name/api/v1/user',
+    url: 'http://c.etki.name/api/v1/user',
     method: 'post',
     data: { login: 'login', password: 'password' },
     complete: function (data) {
