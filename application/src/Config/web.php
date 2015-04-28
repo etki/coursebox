@@ -21,6 +21,11 @@ return array_replace_recursive(
                     '' => 'site/index'
                 )
             ),
+            'session' => array(
+                'class' => 'CDbHttpSession',
+                'autoCreateSessionTable' => true,
+                'timeout' => 3600,
+            ),
         ),
     )
 );
