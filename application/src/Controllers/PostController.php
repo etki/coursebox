@@ -91,6 +91,14 @@ class PostController extends RestController
      */
     public function actionSingle()
     {
-
+        $id = Yii::app()->getRequest()->getQuery('id');
+        if (!$id) {
+            $this->respond(array('error' => 'Missing `id` parameter'), false);
+        }
+        /** @type PostModel $post */
+        if (!($post = PostModel::model()->findByPk($id))) {
+            $this->respond(array('error' => 'Post doesn\'t exist'), false, 404);
+        }
+        $this->respond($post->getAttributes());
     }
 }

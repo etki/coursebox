@@ -34,7 +34,7 @@ class UserController extends RestController
             $this->respond(array('error' => 'validation error'), false);
         }
     }
-    public function actionList()
+    public function actionIndex()
     {
         $users = UserModel::model()->findAll();
         $data = array();

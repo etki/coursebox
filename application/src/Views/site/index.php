@@ -34,7 +34,10 @@
         <code>POST /api/v1/post</code> - запостить пост. Параметры - title, content.
     </li>
     <li>
-        <code>GET /api/v1/post</code> - получить все посты
+        <code>GET /api/v1/post</code> - получить все посты.
+    </li>
+    <li>
+        <code>GET /api/v1/post/:id</code> - получить конкретный пост.
     </li>
 </ul>
 <h1>Задание</h1>
