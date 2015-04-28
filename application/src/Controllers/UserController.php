@@ -34,12 +34,36 @@ class UserController extends RestController
             $this->respond(array('error' => 'validation error'), false);
         }
     }
-    public function actionExport()
+    public function actionList()
     {
-        $user = Yii::app()->getUser();
-        if ($user->getIsGuest()) {
-            $this->respond(array('error' => 'Not authorized'), false);
+        $users = UserModel::model()->findAll();
+        $data = array();
+        /** @type UserModel $user */
+        foreach ($users as $user) {
+            $posts = PostModel::model()->count('user_id = :user_id', array('user_id' => $user->id));
+            $data[] = array(
+                'id' => $user->id,
+                'login' => $user->login,
+                'posts' => $posts
+            );
         }
-        $this->respond(array('id' => $user->getId(), 'login' => $user->getState('login')));
+        $this->respond($data);
+    }
+    public function actionSingle()
+    {
+        $id = Yii::app()->getRequest()->getQuery('id');
+        if (!$id) {
+            $this->respond(array('error' => 'Missing id parameter',), false);
+        }
+        if (!($user = UserModel::model()->findByPk($id))) {
+            $this->respond(array('error' => 'No such user',), false, 404);
+        }
+        $posts = PostModel::model()->count('user_id = :user_id', array('user_id' => $user->id));
+        $data = array(
+            'id' => $user->id,
+            'login' => $user->login,
+            'posts' => $posts
+        );
+        $this->respond($data);
     }
 }

@@ -39,6 +39,7 @@ class BaseController extends CController
         $application = Yii::app();
         $this->request = $application->getRequest();
         $this->user = $application->getUser();
+        Yii::getLogger()->autoFlush = 1;
     }
 
     /**

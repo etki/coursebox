@@ -20,7 +20,15 @@ class UserIdentity extends CUserIdentity
         } else {
             $this->_id = $user->id;
             $this->setState('login', $user->login);
+            $this->setState('id', $user->id);
         }
+        $message = sprintf(
+            'Logging attempt (%s:%s = %d)',
+            $this->username,
+            $this->password,
+            $this->errorCode
+        );
+        Yii::log($message);
         return $this->errorCode === self::ERROR_NONE;
     }
     public function getId()

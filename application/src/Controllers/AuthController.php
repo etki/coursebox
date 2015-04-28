@@ -35,4 +35,12 @@ class AuthController extends RestController
         Yii::app()->getUser()->logout();
         $this->respond();
     }
+    public function actionStatus()
+    {
+        $user = Yii::app()->getUser();
+        if ($user->getIsGuest()) {
+            $this->respond(array('error' => 'Not authorized'), false);
+        }
+        $this->respond(array('id' => $user->getId(), 'login' => $user->getState('login')));
+    }
 }

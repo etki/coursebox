@@ -19,7 +19,13 @@
         <code>POST /api/v1/user</code> - создать пользователя. Параметры - login, password.
     </li>
     <li>
-        <code>GET /api/v1/user</code> - получить информацию о текущем пользователе.
+        <code>GET /api/v1/user</code> - получить список пользователей.
+    </li>
+    <li>
+        <code>GET /api/v1/user/:id</code> - получить конкретного пользователя.
+    </li>
+    <li>
+        <code>GET /api/v1/auth</code> - получить информацию о текущем пользователе.
     </li>
     <li>
         <code>POST /api/v1/auth</code> - залогиниться. Параметры - login, password.
@@ -44,12 +50,11 @@ $.ajax({
     url: 'http://c.etki.name/api/v1/user',
     method: 'post',
     data: { login: 'login', password: 'password' },
-    complete: function (data) {
-        if (data.success) {
-            // blah!
-        } else {
-            // double blah!
-        }
+    success: function (data) {
+        // blah!
+    },
+    error: function () {
+        // double blah!
     }
 });
 </pre>
