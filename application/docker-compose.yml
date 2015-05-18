@@ -1,0 +1,10 @@
+application:
+  build: .
+  ports:
+    - "127.0.0.1:5599:9000"
+nginx:
+  build: "resources/docker/nginx"
+  links:
+    - "application:application"
+  ports:
+    - "127.0.0.1:5588:80"

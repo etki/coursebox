@@ -8,7 +8,11 @@ return array_replace_recursive(
         'components' => array(
             'urlManager' => array(
                 'urlFormat' => 'path',
+                'showScriptName' => false,
+                'useStrictParsing' => true,
                 'rules' => array(
+                    array('cors/options', 'pattern' => '.*', 'verb' => 'OPTIONS'),
+                    
                     array('auth/status', 'pattern' => 'api/v1/auth', 'verb' => 'GET',),
                     array('auth/login', 'pattern' => 'api/v1/auth', 'verb' => 'POST',),
                     array('auth/logout', 'pattern' => 'api/v1/auth', 'verb' => 'DELETE',),

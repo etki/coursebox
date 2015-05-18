@@ -1,0 +1,14 @@
+.dockerignore
+.gitignore
+.git
+composer.lock
+vendor
+doc
+README.md
+src/Runtime/*
+bin/codecept
+bin/dbunit
+bin/phpunit
+bin/uuid
+bin/yiic
+!bin/console

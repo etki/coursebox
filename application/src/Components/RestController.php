@@ -25,7 +25,14 @@ class RestController extends BaseController
         $code = 200
     ) {
         header('Content-Type: application/json; charset=utf-8');
-        header('Access-Control-Allow-Origin: *');
+        $origin = '*';
+        if (isset($_SERVER['HTTP_ORIGIN'])) {
+            $origin = $_SERVER['HTTP_ORIGIN'];
+        }
+        header('Access-Control-Allow-Origin: ' . $origin);
+        header('Access-Control-Allow-Methods: GET,POST,PUT,DELETE');
+        header('Access-Control-Allow-Credentials: true');
+        header('Access-Control-Allow-Headers: *');
         if (!$code) {
             $code = $success ? 200 : 400;
         }
