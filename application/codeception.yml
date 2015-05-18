@@ -1,26 +1,24 @@
 actor: Tester
 paths:
-    tests: tests
-    log: tests/_output
-    data: tests/_data
-    helpers: tests/_support
+  tests: tests/Suites
+  log: tests/Output
+  data: tests/Data
+  helpers: tests/Support
 settings:
-    bootstrap: _bootstrap.php
-    colors: true
-    memory_limit: 1024M
+  bootstrap: _bootstrap.php
+  colors: true
+  memory_limit: 1024M
 extensions:
-    enabled:
-        - Yandex\Allure\Adapter\AllureAdapter
-    config:
-        Yandex\Allure\Adapter\AllureAdapter:
-            deletePreviousResults: true
-            outputDirectory: ../tests/_output/allure-results
-coverage:
-    enabled: true
-    whitelist:
-        include:
-            - src/*
-        exclude:
-            - src/Config/*
-            - src/Migrations/*
-            - src/Runtime/*
+  enabled:
+    - Yandex\Allure\Adapter\AllureAdapter
+    - Codeception\Extension\PhpBuiltinServer
+  config:
+    Yandex\Allure\Adapter\AllureAdapter:
+      deletePreviousResults: true
+      outputDirectory: tests/Output/Allure/Data
+    Codeception\Extension\PhpBuiltinServer:
+      hostname: localhost
+      port: 20080
+      documentRoot: public
+      router: src/Boot/Web/test.php
+      delay: 10

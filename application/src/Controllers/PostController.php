@@ -17,12 +17,13 @@ class PostController extends RestController
      */
     public function actionIndex()
     {
+        /** @type PostModel[] $posts */
         $posts = PostModel::model()->findAll();
         $data = array();
         foreach ($posts as $post) {
             $data[] = $post->getAttributes();
         }
-        $this->respond($data);
+        $this->emitNormalResponse($data);
     }
 
     /**
@@ -31,74 +32,96 @@ class PostController extends RestController
      * @return void
      * @since 0.1.0
      */
-    public function actionNew()
+    public function actionCreate()
     {
-        if (Yii::app()->getUser()->getIsGuest()) {
-            $this->respond(array('error' => 'Not authorized'), false);
-        }
-        $request = Yii::app()->getRequest();
-        $parameters = array('title', 'content');
-        $missingParameters = array();
-        foreach ($parameters as $parameter) {
-            $$parameter = $request->getPost($parameter);
-            if (!$$parameter) {
-                $missingParameters[] = $parameter;
-            }
-        }
-        if ($missingParameters) {
-            $this->respond(
-                array('error' => 'Missing parameters: ' . implode(', ', $missingParameters)),
-                false
-            );
-        }
+        $this->barricade(array('post' => array('title', 'content',)));
         $post = new PostModel();
-        $post->title = $title;
-        $post->content = $content;
-        $post->user_id = Yii::app()->getUser()->getId();
+        $post->title = $this->getRequest()->getPost('title');
+        $post->content = $this->getRequest()->getPost('content');
+        $post->user_id = $this->getUser()->getId();
         if (!$post->save()) {
-            $this->respond($post->getErrors(), false);
+            $this->emitBadRequestResponse($post->getErrors());
         }
-        $this->respond();
+        $this->emitNormalResponse($post->getAttributes());
     }
 
     /**
      * Deletes post.
+     *
+     * @SuppressWarnings(PHPMD.ShortVariableName)
      *
      * @return void
      * @since 0.1.0
      */
     public function actionDelete()
     {
-
+        $this->barricade(array('get' => array('id',),));
+        $id = $this->getRequest()->getQuery('id');
+        /** @type PostModel|null $post */
+        $post = PostModel::model()->findByPk($id);
+        if (!$post) {
+            $this->emitResourceNotFoundResponse();
+        }
+        if ($post->user->id !== $this->getUser()->getId()) {
+            $this->emitNotAuthorizedResponse();
+        }
+        $post->delete();
+        $this->emitNormalResponse();
     }
 
     /**
      * Edits post.
      *
+     * @SuppressWarnings(PHPMD.ShortVariableName)
+     *
      * @return void
      * @since 0.1.0
      */
-    public function actionEdit()
+    public function actionUpdate()
     {
-
+        $parameters = array(
+            'get' => array('id',),
+            'post' => array('title', 'content',),
+        );
+        $this->barricade($parameters);
+        $id = $this->getRequest()->getQuery('id');
+        /** @type PostModel|null $post */
+        $post = PostModel::model()->findByPk($id);
+        if (!$post) {
+            $this->emitResourceNotFoundResponse();
+        }
+        $post->title = $this->getRequest()->getPost('id');
+        $post->content = $this->getRequest()->getPost('id');
+        $this->emitNormalResponse($post->getAttributes());
     }
 
     /**
      * Shows single post.
      *
+     * @SuppressWarnings(PHPMD.ShortVariableName)
+     *
      * @return void
      * @since 0.1.0
      */
-    public function actionSingle()
+    public function actionRead()
     {
-        $id = Yii::app()->getRequest()->getQuery('id');
-        if (!$id) {
-            $this->respond(array('error' => 'Missing `id` parameter'), false);
-        }
+        $this->barricade(array('get' => array('id',)));
+        $id = $this->getRequest()->getQuery('id');
         /** @type PostModel $post */
         if (!($post = PostModel::model()->findByPk($id))) {
-            $this->respond(array('error' => 'Post doesn\'t exist'), false, 404);
+            $this->emitResourceNotFoundResponse();
         }
-        $this->respond($post->getAttributes());
+        $this->emitNormalResponse($post->getAttributes());
+    }
+
+    /**
+     * Returns list of auth-protected actions.
+     *
+     * @return string[]
+     * @since 0.1.0
+     */
+    public function getProtectedActions()
+    {
+        return array('create', 'update', 'delete',);
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "etki/coursebox",
-  "description": "a simple app so students may perform some magic",
+  "description": "A simple app so students may perform some magic",
   "minimum-stability": "stable",
   "license": "MIT",
   "authors": [
@@ -13,10 +13,45 @@
   "require": {
     "yiisoft/yii": "~1.1.16",
     "ircmaxell/password-compat": "~1.0",
-    "allure-framework/allure-codeception": "~1.1.1"
+    "flow/jsonpath": "^0.2.4"
+  },
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "codeception/phpbuiltinserver-shutdown-fix",
+        "version": "1.2.1",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/jelhan/PhpBuiltinServer.git",
+          "reference": "master"
+        },
+        "autoload": {
+          "psr-0": {
+            "Codeception": "src"
+          }
+        }
+      }
+    }
+  ],
+  "autoload": {
+    "files": [
+      "src/Components/EnvironmentManager.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Etki\\Coursebox\\Tests\\": "tests/"
+    }
   },
   "require-dev": {
-    "codeception/codeception": "~2.0"
+    "codeception/codeception": "~2.0",
+    "allure-framework/allure-codeception": "~1.1.1",
+    "codeception/phpbuiltinserver-shutdown-fix": "~1.2",
+    "phpunit/php-invoker": "^1.1",
+    "phpunit/dbunit": "^1.3",
+    "phpunit/phpunit-selenium": "^1.4",
+    "phpunit/phpunit-story": "^1.0"
   },
   "config": {
     "bin-dir": "bin"

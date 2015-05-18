@@ -9,38 +9,54 @@
  */
 class AuthController extends RestController
 {
+    /**
+     * Logs user in,
+     *
+     * @return void
+     * @since 0.1.0
+     */
     public function actionLogin()
     {
-        $request = Yii::app()->getRequest();
-        $missingParameters = array();
-        foreach (array('login', 'password') as $key) {
-            $$key = $request->getPost($key);
-            if (!$$key) {
-                $missingParameters[] = $key;
-            }
+        $this->barricade(array('post' => array('login', 'password')));
+        $login = $this->getRequest()->getPost('login');
+        $password = $this->getRequest()->getPost('password');
+        if (AuthenticationManager::authenticate($login, $password)) {
+            $this->emitNormalResponse();
         }
-        if ($missingParameters) {
-            $this->respond(array('missingParameters' => implode(', ', $missingParameters)), false);
-            Yii::app()->end();
-        }
-        $identity = new UserIdentity($login, $password);
-        if (!$identity->authenticate()) {
-            $this->respond(array(), false);
-        }
-        Yii::app()->getUser()->login($identity);
-        $this->respond();
+        $this->emitBadRequestResponse();
     }
+
+    /**
+     * Logs user out.
+     *
+     * @return void
+     * @since 0.1.0
+     */
     public function actionLogout()
     {
-        Yii::app()->getUser()->logout();
-        $this->respond();
+        if ($this->getUser()->getIsGuest()) {
+            $this->emitNotAuthorizedResponse();
+        }
+        AuthenticationManager::logout();
+        $this->emitNormalResponse();
     }
+
+    /**
+     * Returns current authentication status.
+     *
+     * @return void
+     * @since 0.1.0
+     */
     public function actionStatus()
     {
-        $user = Yii::app()->getUser();
-        if ($user->getIsGuest()) {
-            $this->respond(array('error' => 'Not authorized'), false);
+        if ($this->getUser()->getIsGuest()) {
+            $this->emitNotAuthorizedResponse();
         }
-        $this->respond(array('id' => $user->getId(), 'login' => $user->getState('login')));
+        $this->emitNormalResponse(
+            array(
+                'id' => $this->getUser()->getId(),
+                'login' => $this->getUser()->getState('login'),
+            )
+        );
     }
 }

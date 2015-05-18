@@ -9,29 +9,14 @@
  */
 class SiteController extends BaseController
 {
+    /**
+     * Prints out short documentation.
+     *
+     * @return void
+     * @since 0.1.0
+     */
     public function actionIndex()
     {
         $this->render('index');
-    }
-    /**
-     * Registers new user.
-     *
-     * @return void
-     * @since 0.1.0
-     */
-    public function actionRegister()
-    {
-
-    }
-
-    /**
-     * Logs user in.
-     *
-     * @return void
-     * @since 0.1.0
-     */
-    public function actionLogin()
-    {
-
     }
 }

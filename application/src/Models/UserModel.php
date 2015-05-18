@@ -55,7 +55,8 @@ class UserModel extends BaseModel
     public function relations()
     {
         return array(
-            'posts' => array(self::HAS_MANY, 'Post', 'user_id',),
+            'posts' => array(self::HAS_MANY, 'PostModel', 'user_id',),
+            'postCount' => array(self::STAT, 'PostModel', 'user_id',),
         );
     }
 
@@ -103,6 +104,16 @@ class UserModel extends BaseModel
         );
     }
 
+    /**
+     * Retrieves model.
+     *
+     * @param string $className Name of the class.
+     *
+     * @codeCoverageIgnore
+     *
+     * @return static
+     * @since 0.1.0
+     */
     public static function model($className = __CLASS__)
     {
         return parent::model($className);

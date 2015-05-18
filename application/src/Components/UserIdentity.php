@@ -9,7 +9,20 @@
  */
 class UserIdentity extends CUserIdentity
 {
-    private $_id;
+    /**
+     * User identifier, as stolen from database.
+     *
+     * @type int
+     * @since 0.1.0
+     */
+    private $id;
+
+    /**
+     * Authenticates user.
+     *
+     * @return bool
+     * @since 0.1.0
+     */
     public function authenticate()
     {
         $this->errorCode = self::ERROR_NONE;
@@ -18,9 +31,8 @@ class UserIdentity extends CUserIdentity
         if (!$user || !StringHashProcessor::verify($this->password, $user->password)) {
             $this->errorCode = self::ERROR_UNKNOWN_IDENTITY;
         } else {
-            $this->_id = $user->id;
+            $this->id = $user->id;
             $this->setState('login', $user->login);
-            $this->setState('id', $user->id);
         }
         $message = sprintf(
             'Logging attempt (%s:%s = %d)',
@@ -31,8 +43,15 @@ class UserIdentity extends CUserIdentity
         Yii::log($message);
         return $this->errorCode === self::ERROR_NONE;
     }
+
+    /**
+     * Retrieves user ID.
+     *
+     * @return int
+     * @since 0.1.0
+     */
     public function getId()
     {
-        return $this->_id;
+        return $this->id;
     }
 }

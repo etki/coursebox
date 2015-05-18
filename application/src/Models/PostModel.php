@@ -38,7 +38,7 @@ class PostModel extends BaseModel
     public function relations()
     {
         return array(
-            'user' => array(self::BELONGS_TO, 'User', 'user_id',),
+            'user' => array(self::BELONGS_TO, 'UserModel', 'user_id',),
         );
     }
 
@@ -59,6 +59,14 @@ class PostModel extends BaseModel
         );
     }
 
+    /**
+     * Returns current model instance.
+     *
+     * @param string $className Name of the class.
+     *
+     * @return self
+     * @since 0.1.0
+     */
     public static function model($className = __CLASS__)
     {
         return parent::model($className);

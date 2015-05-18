@@ -24,6 +24,13 @@ class BaseController extends CController
      * @since 0.1.0
      */
     private $user;
+    /**
+     * Environment name.
+     *
+     * @type string
+     * @since 0.1.0
+     */
+    private $environment;
 
     /**
      * Initializer.
@@ -39,7 +46,7 @@ class BaseController extends CController
         $application = Yii::app();
         $this->request = $application->getRequest();
         $this->user = $application->getUser();
-        Yii::getLogger()->autoFlush = 1;
+        $this->environment = $application->getParams()->itemAt('environment');
     }
 
     /**
@@ -66,5 +73,16 @@ class BaseController extends CController
     protected function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Retrieves current environment.
+     *
+     * @return string
+     * @since 0.1.0
+     */
+    protected function getEnvironment()
+    {
+        return $this->environment;
     }
 }
