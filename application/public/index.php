@@ -1,11 +1,5 @@
 <?php
 
-// thing that actually HAS to be done through configuration
-
-if (!ini_get('date.timezone')) {
-    date_default_timezone_set('Europe/Moscow');
-}
-
 $projectRoot = dirname(__DIR__);
 $appRoot = $projectRoot . '/src';
 
