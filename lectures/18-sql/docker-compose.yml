@@ -1,0 +1,18 @@
+sqlbuddy:
+  image: tvalladon/sqlbuddy
+  links:
+    mysql: mysql
+  ports:
+    - 80
+phpmyadmin:
+  image: corbinu/docker-phpmyadmin
+  links:
+    mysql: mysql
+  environment:
+    MYSQL_USERNAME: root
+  ports:
+    - 80
+mysql:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: root
