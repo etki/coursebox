@@ -1,0 +1,27 @@
+postgresql:
+  image: postgres
+  environment:
+    POSTGRES_USER: root
+    POSTGRES_PASSWORD: password
+  ports:
+    - "65432:5432"
+mysql:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: root
+  ports:
+    - "63306:3306"
+application:
+  build: .
+  links:
+    - "mysql:mysql"
+    - "postgresql:postgresql"
+  volumes:
+    - "src:/var/www/html"
+nginx:
+  build: resources/provision/docker/nginx
+  links:
+    - "application:application"
+  ports:
+    - "60080:80"
