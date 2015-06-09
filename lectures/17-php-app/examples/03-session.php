@@ -1,4 +1,3 @@
-<meta charset="utf-8"/>
 <?php
 session_start();
 if (isset($_POST['action'])) {
@@ -11,6 +10,7 @@ if (isset($_POST['action'])) {
     }
 }
 ?>
+<meta charset="utf-8"/>
 <pre>
 <?php
     print_r($_SESSION)
