@@ -9,7 +9,7 @@ class Base
     }
 }
 
-class Derivative
+class Derivative extends Base
 {
     private $dataType;
     public function __construct($data)
